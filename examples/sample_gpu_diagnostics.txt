@@ -1,0 +1,38 @@
+Sample GPU diagnostics output
+=============================
+
+This is a generic example. It is not evidence of direct validation on a specific
+enterprise AI GPU platform.
+
+$ lspci | grep -i nvidia
+65:00.0 3D controller: NVIDIA Corporation Generic Data Center GPU (sample)
+
+$ lsmod | grep nvidia
+nvidia_uvm           1234567  0
+nvidia_drm            123456  0
+nvidia_modeset       1234567  1 nvidia_drm
+nvidia              12345678  2 nvidia_uvm,nvidia_modeset
+
+$ nvidia-smi
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 555.00.00              Driver Version: 555.00.00      CUDA Version: 12.5     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                  Persistence-M| Bus-Id          Disp.A | Volatile Uncorr. ECC |
+|  0   Generic Data Center GPU        Off | 00000000:65:00.0 Off  |                    0 |
+| 30C    P0              60W / 300W       |      0MiB / 49152MiB   |      0%      Default |
++-----------------------------------------+------------------------+----------------------+
+
+$ nvidia-smi -L
+GPU 0: Generic Data Center GPU (UUID: GPU-sample-uuid)
+
+$ python -c "import torch; print(torch.cuda.is_available()); print(torch.cuda.device_count())"
+True
+1
+
+$ nvidia-smi topo -m
+        GPU0    CPU Affinity
+GPU0     X      0-31
+
+Classification:
+PASS for basic detection in this sample scenario because PCIe, driver, nvidia-smi,
+GPU count, and PyTorch CUDA visibility all agree.

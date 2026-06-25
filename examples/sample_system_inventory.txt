@@ -1,0 +1,51 @@
+Sample system inventory output
+==============================
+
+This is a generic example showing the kind of evidence the collection scripts produce.
+It does not represent a validated enterprise AI server.
+
+$ date
+Thu Jun 25 15:30:00 EDT 2026
+
+$ hostname
+lab-linux-node-01
+
+$ uname -a
+Linux lab-linux-node-01 6.8.0-generic x86_64 GNU/Linux
+
+$ cat /etc/os-release
+NAME="Ubuntu"
+VERSION="24.04 LTS (sample)"
+ID=ubuntu
+
+$ lscpu
+Architecture:        x86_64
+CPU(s):              32
+Thread(s) per core:  2
+Core(s) per socket:  16
+Socket(s):           1
+Model name:          Generic x86_64 CPU
+
+$ free -h
+               total        used        free      shared  buff/cache   available
+Mem:            128Gi        12Gi        92Gi       512Mi        24Gi       114Gi
+Swap:             8Gi          0B         8Gi
+
+$ lsblk
+NAME        MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
+nvme0n1     259:0    0   1.9T  0 disk
+|-nvme0n1p1 259:1    0   512M  0 part /boot/efi
+`-nvme0n1p2 259:2    0   1.9T  0 part /
+
+$ df -h
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/nvme0n1p2  1.8T  220G  1.5T  13% /
+
+$ lspci | grep -i nvidia
+65:00.0 3D controller: NVIDIA Corporation Generic Data Center GPU (sample)
+
+$ python3 --version
+Python 3.12.3
+
+$ docker --version
+Docker version 26.0.0, build sample

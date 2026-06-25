@@ -1,0 +1,21 @@
+# Generated diagnostic output
+outputs/*
+!outputs/.gitkeep
+
+# Local environment files
+.env
+.env.*
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# Logs and temporary files
+*.log
+*.tmp
+tmp/
+temp/
